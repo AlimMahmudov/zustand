@@ -45,21 +45,22 @@ const Home = () => {
       <div className="container">
         <div className={scss.home}>
           <h1>Todo List</h1>
-          <div className="">
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="title"
-            />
-            <input
-              type="image"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              placeholder="image"
-            />
-            <button onClick={onSubmit}>add</button>
-          </div>
+          <input
+            type="text"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            placeholder="image"
+          />
+
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="title"
+          />
+
+          <button onClick={onSubmit}>add</button>
+
           {product.map((el) => (
             <div key={el._id ?? el.title}>
               {isEdit ? (
@@ -67,16 +68,16 @@ const Home = () => {
                   <input
                     type="text"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTitleEdit(e.target.value)}
                     placeholder="title"
                   />
                   <input
                     type="image"
                     value={image}
-                    onChange={(e) => setImage(e.target.value)}
+                    onChange={(e) => setImageEdit(e.target.value)}
                     placeholder="image"
                   />
-                  <button onClick={onSubmit}>add</button>
+                  <button onClick={onSubmitEdit}>add</button>
                 </>
               ) : (
                 <>
