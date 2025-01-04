@@ -18,7 +18,15 @@ const Home = () => {
       image,
       title,
     };
+    // Отправка нового продукта на сервер
     await PostProduct(newProduct);
+
+    // Обновляем состояние с новыми продуктами
+    zustand.setState({
+      product: [...product, newProduct], // Добавляем новый продукт в список
+    });
+
+    // Очищаем поля ввода
     setImage("");
     setTitle("");
   };
@@ -99,7 +107,7 @@ const Home = () => {
                 <>
                   {el.image ? ( // Убедитесь, что src не пустой
                     <Image
-                      src={el.image}
+                      src={el.image.trimStart()} // Убираем начальные пробелы
                       width={300}
                       height={300}
                       alt={el.title}
