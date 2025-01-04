@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import scss from "./Home.module.scss";
 import zustand from "@/stores/zustand";
+import Image from "next/image";
 
 const Home = () => {
   const [image, setImage] = useState("");
@@ -57,7 +58,49 @@ const Home = () => {
               onChange={(e) => setImage(e.target.value)}
               placeholder="image"
             />
+            <button onClick={onSubmit}>add</button>
           </div>
+          {product.map((el) => (
+            <div key={el._id ?? el.title}>
+              {isEdit ? (
+                <>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="title"
+                  />
+                  <input
+                    type="image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    placeholder="image"
+                  />
+                  <button onClick={onSubmit}>add</button>
+                </>
+              ) : (
+                <>
+                  <Image
+                    src={el.image}
+                    width={300}
+                    height={300}
+                    alt={el.title}
+                  />
+                  <h1>{el.title}</h1>
+                  <button onClick={() => DeleteProduct(el._id)}>delete</button>
+                  <button
+                    onClick={() => {
+                      setIsEdit(el._id);
+                      setImageEdit(el.image);
+                      setTitleEdit(el.title);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
