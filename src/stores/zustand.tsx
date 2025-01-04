@@ -28,17 +28,17 @@ const zustand = create<ZustandType>((set) => ({
     }
   },
 
-  //   PostProduct: async (data) => {
-  //     try {
-  //       const { data: response } = await axios.post<ProductType>(
-  //         `${process.env.NEXT_PUBLIC_ZUSTAND}`,
-  //         data
-  //       );
-  //       set((state) => ({ product: [...state.product, response] }));
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     }
-  //   },
+  PostProduct: async (data) => {
+    try {
+      const { data: response } = await axios.post<ProductType>(
+        `${process.env.NEXT_PUBLIC_ZUSTAND}`,
+        data
+      );
+      set((state) => ({ product: [...state.product, response] }));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  },
   //   DeleteProduct: async (id) => {
   //     try {
   //       await axios.delete(`${process.env.NEXT_PUBLIC_ZUSTAND}/${id}`);
