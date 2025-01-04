@@ -62,7 +62,12 @@ const zustand = create<ZustandType>((set) => ({
         ),
       }));
     } catch (error) {
-      console.error("Error patching product:", error);
+      // Выводим больше информации об ошибке для отладки
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error:", error.response?.data || error.message);
+      } else {
+        console.error("Unknown error:", error);
+      }
     }
   },
 }));

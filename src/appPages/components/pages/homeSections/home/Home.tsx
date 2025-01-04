@@ -18,19 +18,16 @@ const Home = () => {
       image,
       title,
     };
-    // Отправка нового продукта на сервер
     await PostProduct(newProduct);
 
-    // Обновляем состояние с новыми продуктами
+    // Добавляем новый продукт в состояние после успешного добавления
     zustand.setState({
-      product: [...product, newProduct], // Добавляем новый продукт в список
+      product: [...product, { ...newProduct, _id: Date.now() }], // Здесь используем уникальный идентификатор для нового продукта
     });
 
-    // Очищаем поля ввода
     setImage("");
     setTitle("");
   };
-
   const onSubmitEdit = async () => {
     if (isEdit !== null) {
       const newProduct = {
@@ -62,13 +59,7 @@ const Home = () => {
       <div className="container">
         <div className={scss.home}>
           <h1>Todo List</h1>
-          <p>
-            https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg
-          </p>
-          <p>https://cdn3.pixelcut.app/7/20/uncrop_hero_bdf08a8ca6.jpg</p>
-          <p>
-            https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg
-          </p>
+
           <input
             type="text"
             value={image}
