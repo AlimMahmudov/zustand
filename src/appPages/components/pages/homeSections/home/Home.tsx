@@ -45,6 +45,13 @@ const Home = () => {
       <div className="container">
         <div className={scss.home}>
           <h1>Todo List</h1>
+          <p>
+            https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg
+          </p>
+          <p>https://cdn3.pixelcut.app/7/20/uncrop_hero_bdf08a8ca6.jpg</p>
+          <p>
+            https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg
+          </p>
           <input
             type="text"
             value={image}
@@ -61,34 +68,38 @@ const Home = () => {
 
           <button onClick={onSubmit}>add</button>
 
-          {product.map((el) => (
-            <div key={el._id ?? el.title}>
-              {isEdit ? (
+          {product.map((el, index) => (
+            <div key={el._id || `product-${index}`}>
+              {isEdit === el._id ? (
                 <>
                   <input
                     type="text"
-                    value={title}
+                    value={titleEdit}
                     onChange={(e) => setTitleEdit(e.target.value)}
                     placeholder="title"
                   />
                   <input
-                    type="image"
-                    value={image}
+                    type="text"
+                    value={imageEdit}
                     onChange={(e) => setImageEdit(e.target.value)}
                     placeholder="image"
                   />
-                  <button onClick={onSubmitEdit}>add</button>
+                  <button onClick={onSubmitEdit}>Confirm</button>
                 </>
               ) : (
                 <>
-                  <Image
-                    src={el.image}
-                    width={300}
-                    height={300}
-                    alt={el.title}
-                  />
+                  {el.image ? ( // Убедитесь, что src не пустой
+                    <Image
+                      src={el.image}
+                      width={300}
+                      height={300}
+                      alt={el.title || "Product Image"}
+                    />
+                  ) : (
+                    <p>Image not available</p> // Покажите альтернативный контент, если image пустой
+                  )}
                   <h1>{el.title}</h1>
-                  <button onClick={() => DeleteProduct(el._id)}>delete</button>
+                  <button onClick={() => DeleteProduct(el._id)}>Delete</button>
                   <button
                     onClick={() => {
                       setIsEdit(el._id);
