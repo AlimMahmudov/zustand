@@ -30,6 +30,15 @@ const Home = () => {
         title: titleEdit,
       };
       await PatchProduct(isEdit, newProduct);
+
+      // Обновляем состояние с новыми значениями продукта
+      const updatedProduct = product.map((p) =>
+        p._id === isEdit ? { ...p, image: imageEdit, title: titleEdit } : p
+      );
+
+      zustand.setState({ product: updatedProduct }); // Обновляем состояние с новыми данными
+
+      // Очистка состояния редактирования
       setIsEdit(null);
       setImageEdit("");
       setTitleEdit("");
@@ -93,7 +102,7 @@ const Home = () => {
                       src={el.image}
                       width={300}
                       height={300}
-                      alt={el.title || "Product Image"}
+                      alt={el.title}
                     />
                   ) : (
                     <p>Image not available</p> // Покажите альтернативный контент, если image пустой
