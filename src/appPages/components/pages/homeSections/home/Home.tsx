@@ -42,7 +42,23 @@ const Home = () => {
   return (
     <div id={scss.Home}>
       <div className="container">
-        <div className={scss.home}>home</div>
+        <div className={scss.home}>
+          <h1>Todo List</h1>
+          <div className="">
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="title"
+            />
+            <input
+              type="image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              placeholder="image"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
