@@ -39,16 +39,16 @@ const zustand = create<ZustandType>((set) => ({
       console.error("Error fetching products:", error);
     }
   },
-  //   DeleteProduct: async (id) => {
-  //     try {
-  //       await axios.delete(`${process.env.NEXT_PUBLIC_ZUSTAND}/${id}`);
-  //       set((state) => ({
-  //         product: state.product.filter((item) => item._id !== id),
-  //       }));
-  //     } catch (error) {
-  //       console.error("Error deleting product:", error);
-  //     }
-  //   },
+  DeleteProduct: async (id) => {
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_ZUSTAND}/${id}`);
+      set((state) => ({
+        product: state.product.filter((item) => item._id !== id),
+      }));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  },
 
   //   PatchProduct: async (id, data) => {
   //     try {
