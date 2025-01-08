@@ -77,51 +77,59 @@ const Home = () => {
           <button onClick={onSubmit}>add</button>
 
           <div className={scss.todo}>
-          {product.map((el, index) => (
-            <div className={scss.block} key={el._id || `product-${index}`}>
-              {isEdit === el._id ? (
-                <>
-                  <input
-                    type="text"
-                    value={titleEdit}
-                    onChange={(e) => setTitleEdit(e.target.value)}
-                    placeholder="title"
-                  />
-                  <input
-                    type="text"
-                    value={imageEdit}
-                    onChange={(e) => setImageEdit(e.target.value)}
-                    placeholder="image"
-                  />
-                  <button onClick={onSubmitEdit}>Confirm</button>
-                </>
-              ) : (
-                <div className={scss.box}>
-                  {el.image ? ( // Убедитесь, что src не пустой
-                    <Image
-                      src={el.image.trimStart()} // Убираем начальные пробелы
-                      width={300}
-                      height={300}
-                      alt={el.title}
+            {product.map((el, index) => (
+              <div className={scss.block} key={el._id || `product-${index}`}>
+                {isEdit === el._id ? (
+                  <>
+                    <input
+                      type="text"
+                      value={titleEdit}
+                      onChange={(e) => setTitleEdit(e.target.value)}
+                      placeholder="title"
                     />
-                  ) : (
-                    <p>Image not available</p> // Покажите альтернативный контент, если image пустой
-                  )}
-                  <h1>{el.title}</h1>
-                  <button onClick={() => DeleteProduct(el._id)}>Delete</button>
-                  <button
-                    onClick={() => {
-                      setIsEdit(el._id);
-                      setImageEdit(el.image);
-                      setTitleEdit(el.title);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
-            </div>
-          ))}
+                    <input
+                      type="text"
+                      value={imageEdit}
+                      onChange={(e) => setImageEdit(e.target.value)}
+                      placeholder="image"
+                    />
+                    <button onClick={onSubmitEdit}>Confirm</button>
+                  </>
+                ) : (
+                  <div className={scss.box}>
+                    {el.image ? ( // Убедитесь, что src не пустой
+                      <Image
+                        src={el.image.trimStart()} // Убираем начальные пробелы
+                        width={300}
+                        height={300}
+                        alt={el.title}
+                      />
+                    ) : (
+                      <p>Image not available</p> // Покажите альтернативный контент, если image пустой
+                    )}
+                    <h1>{el.title}</h1>
+                    <div className={scss.buttons}>
+                      <button
+                        className={scss.edit}
+                        onClick={() => {
+                          setIsEdit(el._id);
+                          setImageEdit(el.image);
+                          setTitleEdit(el.title);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className={scss.delete}
+                        onClick={() => DeleteProduct(el._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
