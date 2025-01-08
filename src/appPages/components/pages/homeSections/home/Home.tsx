@@ -76,8 +76,9 @@ const Home = () => {
 
           <button onClick={onSubmit}>add</button>
 
+          <div className={scss.todo}>
           {product.map((el, index) => (
-            <div key={el._id || `product-${index}`}>
+            <div className={scss.block} key={el._id || `product-${index}`}>
               {isEdit === el._id ? (
                 <>
                   <input
@@ -95,7 +96,7 @@ const Home = () => {
                   <button onClick={onSubmitEdit}>Confirm</button>
                 </>
               ) : (
-                <>
+                <div className={scss.box}>
                   {el.image ? ( // Убедитесь, что src не пустой
                     <Image
                       src={el.image.trimStart()} // Убираем начальные пробелы
@@ -117,10 +118,11 @@ const Home = () => {
                   >
                     Edit
                   </button>
-                </>
+                </div>
               )}
             </div>
           ))}
+          </div>
         </div>
       </div>
     </div>
