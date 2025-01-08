@@ -58,24 +58,25 @@ const Home = () => {
     <div id={scss.Home}>
       <div className="container">
         <div className={scss.home}>
-          <h1>Todo List</h1>
+          <div className={scss.inputs}>
+            <h1>Todo List</h1>
 
-          <input
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            placeholder="image"
-          />
+            <input
+              type="text"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              placeholder="image"
+            />
 
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="title"
-          />
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="title"
+            />
 
-          <button onClick={onSubmit}>add</button>
-
+            <button onClick={onSubmit}>add</button>
+          </div>
           <div className={scss.todo}>
             {product.map((el, index) => (
               <div className={scss.block} key={el._id || `product-${index}`}>
