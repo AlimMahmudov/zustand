@@ -22,7 +22,7 @@ const zustand = create<ZustandType>((set) => ({
       const { data } = await axios.get<ProductType[]>(
         `${process.env.NEXT_PUBLIC_ZUSTAND}`
       );
-      set({ product: data });
+      set({ product: data.data });
     } catch (error) {
       console.error("Error fetching products:", error);
     }
